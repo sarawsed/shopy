@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 /* css for loading in productcategory */
 .loading-dots span {
   animation: bounce 1s infinite;
@@ -27,4 +28,25 @@
   50% {
     transform: translateY(-10px);
   }
+}
+/* css for like button */
+
+.like-button {
+  width: 40px;
+  height: 40px;
+  background-color: #111827;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+}
+
+.like-button:hover {
+  color: red;
+}
+
+.liked {
+  color: red;
 }

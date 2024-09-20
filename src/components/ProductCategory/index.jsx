@@ -28,7 +28,7 @@ const ProductCategory = () => {
   }, [category]);
 
   useEffect(() => {
-    const results = products.filter(product =>
+    const results = products.filter((product) =>
       product.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
     setFilteredProducts(results);
@@ -70,7 +70,9 @@ const ProductCategory = () => {
             <ProductCard key={product.id} product={product} />
           ))
         ) : (
-          <p className=" text-center text-xl font-bold text-red-700 ">No products found.</p>
+          <p className=" text-center text-xl font-bold text-red-700 ">
+            No products found.
+          </p>
         )}
       </div>
     </section>

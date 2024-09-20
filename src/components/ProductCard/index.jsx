@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { FaHeart, FaShoppingCart } from "react-icons/fa";
-import { Link } from "react-router-dom"; // برای لینک کردن به جزئیات محصول
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [isInCart, setIsInCart] = useState(false);
 
-  // بررسی وجود محصول در علاقه‌مندی‌ها و سبد خرید
   useEffect(() => {
     const favoriteItems = JSON.parse(localStorage.getItem("favorites")) || [];
     const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
@@ -14,7 +13,6 @@ const ProductCard = ({ product }) => {
     setIsInCart(cartItems.some((item) => item.id === product.id));
   }, [product.id]);
 
-  // افزودن/حذف از علاقه‌مندی‌ها
   const toggleLike = () => {
     let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     if (isLiked) {
@@ -26,7 +24,6 @@ const ProductCard = ({ product }) => {
     setIsLiked(!isLiked);
   };
 
-  // افزودن/حذف از سبد خرید
   const toggleCart = () => {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     if (isInCart) {
@@ -47,8 +44,7 @@ const ProductCard = ({ product }) => {
       />
       <h3 className="text-lg font-bold mb-3 truncate">{product.title}</h3>
       <p className="text-gray-700 mb-3">${product.price}</p>
-      
-      {/* دکمه جدید View Details */}
+
       <Link to={`/product/${product.id}`}>
         <button className="bg-yellow-400 text-white px-4 py-2 rounded mb-3">
           View Details
@@ -58,9 +54,7 @@ const ProductCard = ({ product }) => {
       <div className="flex justify-center space-x-4 mt-5">
         <button
           onClick={toggleLike}
-          className={`w-10 h-10 flex items-center justify-center bg-gray-900 rounded-full text-white transition ${
-            isLiked ? "text-red-600" : "hover:text-red-700"
-          }`}
+          className={`like-button ${isLiked ? "liked" : ""}`}
         >
           <FaHeart size={20} />
         </button>

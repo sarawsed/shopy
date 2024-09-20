@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaUser, FaSignOutAlt } from "react-icons/fa"; // آیکون‌های لاگین و لاگ‌اوت
+import { FaUser, FaSignOutAlt } from "react-icons/fa";
 
 const LoginModal = ({ isLoggedIn, username, handleLogin, handleLogout }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -8,20 +8,17 @@ const LoginModal = ({ isLoggedIn, username, handleLogin, handleLogout }) => {
   const [mobileNumber, setMobileNumber] = useState("");
   const [errors, setErrors] = useState({});
 
-  // تابع برای باز و بسته کردن مدال
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-  // تابع برای بررسی صحت شماره موبایل
   const validateMobileNumber = (number) => {
     const mobileRegex = /^0\d{10}$/;
     return mobileRegex.test(number);
   };
 
-  // تابع برای ارسال فرم و لاگین
   const handleSubmit = (e) => {
-    e.preventDefault(); // جلوگیری از ریفرش شدن صفحه
+    e.preventDefault();
     let formErrors = {};
 
     if (!inputUsername.trim()) {
@@ -37,19 +34,19 @@ const LoginModal = ({ isLoggedIn, username, handleLogin, handleLogout }) => {
     if (!mobileNumber) {
       formErrors.mobile = "Mobile number is required";
     } else if (!validateMobileNumber(mobileNumber)) {
-      formErrors.mobile = "Invalid mobile number. It should be 11 digits and start with 0";
+      formErrors.mobile =
+        "Invalid mobile number. It should be 11 digits and start with 0";
     }
 
     setErrors(formErrors);
 
     if (Object.keys(formErrors).length === 0) {
       handleLogin(inputUsername);
-      // بعد از لاگین شدن، ورودی‌ها را خالی می‌کنیم
       setInputUsername("");
       setPassword("");
       setMobileNumber("");
       setErrors({});
-      setIsModalOpen(false); // بستن مدال بعد از موفقیت‌آمیز بودن لاگین
+      setIsModalOpen(false);
     }
   };
 
@@ -72,7 +69,7 @@ const LoginModal = ({ isLoggedIn, username, handleLogin, handleLogout }) => {
 
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-gray-900 p-6 rounded shadow-lg w-80"> {/* تنظیم استایل مطابق هدر */}
+          <div className="bg-gray-900 p-6 rounded shadow-lg w-80">
             <h2 className="text-xl mb-4 text-white">Login</h2>
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
